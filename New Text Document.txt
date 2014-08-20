@@ -1,0 +1,11 @@
+library(shiny)
+
+shinyUI(navbarPage("Pricing Management App",
+                   collapsable=TRUE,
+                   tabPanel("Plot"),
+                   tabPanel("Summary"),
+                   navbarMenu("More",
+                              tabPanel("Product Information"),
+                              tabPanel("Today's Exchange Rate"))
+                   )
+)
