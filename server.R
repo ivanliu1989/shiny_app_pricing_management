@@ -12,6 +12,25 @@ shinyServer(function(input,output){
         mtcars[, input$show_vars_tb2, drop = FALSE]
     }, options = list(bSortClasses = TRUE, aLengthMenu = c(5, 15, 30), iDisplayLength = 5))
     
+    ## Upload & Download Datasets
+    datasetInput <- reactive({
+        switch(input$dataset,
+               "rock" = rock,
+               "pressure" = pressure,
+               "cars" = cars)
+    })
+    
+    output$table <- renderTable({
+        datasetInput()
+    })
+    
+    output$downloadData <- downloadHandler(
+        filename = function() { paste(input$dataset, '.csv', sep='') },
+        content = function(file) {
+            write.csv(datasetInput(), file)
+        }
+    )
+    
     ## Market Information
     dataInput <- reactive({  
         getSymbols(input$symb, src = "yahoo", 

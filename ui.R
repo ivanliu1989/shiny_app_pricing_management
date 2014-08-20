@@ -26,7 +26,17 @@ shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable 
                                 )
                             )),
                    navbarMenu("More",
-                              tabPanel("Upload & Download Datasets"),
+                              tabPanel("Upload & Download Datasets",
+                                       sidebarLayout(
+                                           sidebarPanel(
+                                               selectInput("dataset", "Choose a dataset:", 
+                                                           choices = c("Dongdamen", "GJ")),
+                                               downloadButton('downloadData', 'Download')
+                                               ),
+                                           mainPanel(
+                                               tableOutput('table')
+                                           )
+                                       )),
                               tabPanel("Market Information", 
                                        sidebarLayout(
                                            sidebarPanel(
