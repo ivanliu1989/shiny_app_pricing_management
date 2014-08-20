@@ -9,3 +9,5 @@ shinyUI(navbarPage("Pricing Management App",
                               tabPanel("Today's Exchange Rate"))
                    )
 )
+
+http://shiny.rstudio.com/gallery/unicode-characters.html
