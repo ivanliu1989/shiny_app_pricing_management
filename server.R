@@ -1,11 +1,11 @@
 library(shiny)
 library(quantmod)
 source("helpers.R")
+library(ggplot2)
 
 shinyServer(function(input,output){
     ## Detailed Report
     output$mytable1 <- renderDataTable({
-        library(ggplot2)
         diamonds[, input$show_vars_tb1, drop = FALSE]
     }, options = list(bSortClasses = TRUE, aLengthMenu = c(5, 15, 30), iDisplayLength = 5))
     output$mytable2 <- renderDataTable({
@@ -15,12 +15,11 @@ shinyServer(function(input,output){
     ## Upload & Download Datasets
     datasetInput <- reactive({
         switch(input$dataset,
-               "rock" = rock,
-               "pressure" = pressure,
-               "cars" = cars)
+               "Dongdamen" = mtcars,
+               "GJ" = rock)
     })
     
-    output$table <- renderTable({
+    output$table_download <- renderTable({
         datasetInput()
     })
     

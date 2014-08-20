@@ -34,7 +34,7 @@ shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable 
                                                downloadButton('downloadData', 'Download')
                                                ),
                                            mainPanel(
-                                               tableOutput('table')
+                                               tableOutput('table_download')
                                            )
                                        )),
                               tabPanel("Market Information", 
