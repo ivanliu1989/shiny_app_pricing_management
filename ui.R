@@ -26,9 +26,23 @@ shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable 
                                 )
                             )),
                    navbarMenu("More",
-                              tabPanel("Upload Dataset"),
-                              tabPanel("Download Dataset"))
-                   
-                   
+                              tabPanel("Upload & Download Datasets"),
+                              tabPanel("Market Information", 
+                                       sidebarLayout(
+                                           sidebarPanel(
+                                               helpText("Select a stock to examine. Information will be collected from yahoo finance."),
+                                               textInput("symb", "Symbol", "AUD"),
+                                               dateRangeInput("dates", "Date range", 
+                                                              start = "2014-01-01", 
+                                                              end = as.character(Sys.Date())),
+                                               actionButton("get", "Get Stock"),
+                                               br(),br(),
+                                               checkboxInput("log", "Plot y axis on log scale", value = FALSE),
+                                               checkboxInput("adjust", "Adjust prices for inflation", value = FALSE)
+                                               ),
+                                           mainPanel(plotOutput("plot"))
+                                           )
+                                       )
+                              )
                    )
         )
