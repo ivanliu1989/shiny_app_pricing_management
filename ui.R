@@ -1,8 +1,22 @@
 library(shiny)
 library(ggplot2)  # for the diamonds dataset
-
+require(rCharts)
 shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable = FALSE,
-                   tabPanel("Summary"),
+                   tabPanel("Summary",
+                            sidebarPanel(
+                                selectInput(inputId = "x",
+                                            label = "Choose X",
+                                            choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+                                            selected = "SepalLength"),
+                                selectInput(inputId = "y",
+                                            label = "Choose Y",
+                                            choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+                                            selected = "SepalWidth")
+                            ),
+                            mainPanel(
+                                showOutput("myChart", "polycharts")
+                            )
+                            ),
                    tabPanel("Detailed Report",
                             sidebarLayout(
                                 sidebarPanel(
