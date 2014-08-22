@@ -61,6 +61,7 @@ shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable 
                                                              'text/tab-separated-values',
                                                              'text/plain',
                                                              '.csv',
+                                                             '.xlsx',
                                                              '.tsv'
                                                          )
                                                ),
@@ -71,11 +72,7 @@ shinyUI(navbarPage("AfterPlus Pricing Management", inverse = FALSE, collapsable 
                                                               Semicolon=';',
                                                               Tab='\t'),
                                                             ','),
-                                               radioButtons('quote', 'Quote',
-                                                            c(None='',
-                                                              'Double Quote'='"',
-                                                              'Single Quote'="'"),
-                                                            '"'),
+                                               textInput('sht', 'Sheet Index',value=1),
                                                tags$hr(),
                                                p('If you want a sample .csv or .tsv file to upload,',
                                                  'you can first download the sample',

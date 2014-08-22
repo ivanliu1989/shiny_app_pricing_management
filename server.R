@@ -3,6 +3,7 @@ library(quantmod)
 source("helpers.R")
 library(ggplot2)
 require(rCharts)
+library(xlsx)
 shinyServer(function(input,output){
     ## Summary
     output$myChart1 <- renderChart({
@@ -59,8 +60,7 @@ shinyServer(function(input,output){
         if (is.null(inFile))
             return(NULL)
         
-        read.csv(inFile$datapath, header = input$header,
-                 sep = input$sep, quote = input$quote)
+        read.xlsx(inFile$datapath, sheetIndex=input$sht, header = input$header)
     })
     
     ## Download Datasets
